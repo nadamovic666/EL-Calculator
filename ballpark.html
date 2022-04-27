@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ballpark</title>
+    <style>
+        * {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        * {
+            margin: auto;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+            font-size: 1.5vh;
+        }
+
+        #a6,
+        #a7,
+        #b4,
+        #c5,
+        #c6 {
+            font-weight: bold;
+        }
+
+        .title {
+            text-align: center;
+            font-weight: bold;
+            font-size: 3vh;
+            padding: 2%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="title">TPT E-Learning ballpark metrics</div>
+    <table style="width:80%">
+        <tr>
+            <th colspan="2">ID Efforts:</th>
+            <th colspan="2">UI Efforts:</th>
+            <th colspan="2">DEV Efforts:</th>
+
+        </tr>
+        <tr>
+            <td>Content analysis: </td>
+            <td id="a1"> hours </td>
+            <td>Visual proposal:</td>
+            <td id="b1">hours</td>
+            <td>Content integration:</td>
+            <td id="c1">hours</td>
+        </tr>
+        <tr>
+            <td>Storyboard:</td>
+            <td id="a2">hours</td>
+            <td>UI support:</td>
+            <td id="b2">hours</td>
+            <td>Feedback implementation:</td>
+            <td id="c2">hours</td>
+        </tr>
+        <tr>
+            <td>Prototype:</td>
+            <td id="a3">hours</td>
+            <td>UI feedback:</td>
+            <td id="b3">hours</td>
+            <td>Audio integration:</td>
+            <td id="c3">hours</td>
+        </tr>
+        <tr>
+            <td>Script writing:</td>
+            <td id="a4">hours</td>
+            <td><b>TOTAL UI HOURS:</b></td>
+            <td id="b4">hours</td>
+            <td>Custom player:</td>
+            <td id="c4">hours</td>
+        </tr>
+        <tr>
+            <td>Feedback implementation:</td>
+            <td id="a5">hours</td>
+            <td></td>
+            <td></td>
+            <td><b>TOTAL DEV HOURS:</b></td>
+            <td id="c5">hours</td>
+        </tr>
+        <tr>
+            <td><b>TOTAL ID HOURS:</b></td>
+            <td id="a6">hours</td>
+            <td></td>
+            <td></td>
+            <td><b>TAT (days):</b></td>
+            <td id="c6">days</td>
+        </tr>
+        <tr>
+            <td><b>TAT (weeks):</b></td>
+            <td id="a7">weeks</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+
+    <script type="text/javascript">
+
+        var content_analasys = localStorage.getItem("a1");
+        var storyboarding = localStorage.getItem("a2");
+        var prototyping = localStorage.getItem("a3");
+        var script_writting_Effort = localStorage.getItem("a4");
+        var feedback_ID = localStorage.getItem("a5");
+        var TOTAL_ID = localStorage.getItem("a6");
+        var TAT_ID = localStorage.getItem("a7");
+
+        var visual_proposal = localStorage.getItem("b1");
+        var UI_Support = localStorage.getItem("b2");
+        var UI_feedback = localStorage.getItem("b3");
+        var TOTAL_UI = localStorage.getItem("b4");
+
+        var content_integration = localStorage.getItem("c1");
+        var feedback_implementation_DEV = localStorage.getItem("c2");
+        var audio_integration = localStorage.getItem("c3");
+        var custom_player = localStorage.getItem("c4");
+        var all_hours_DEV = localStorage.getItem("c5");
+        var TAT_dev = localStorage.getItem("c6");
+
+        document.getElementById("a1").innerHTML = content_analasys + " hours";
+        document.getElementById("a2").innerHTML = storyboarding + " hours";
+        document.getElementById("a3").innerHTML = prototyping + " hours";
+        document.getElementById("a4").innerHTML = script_writting_Effort + " hours";
+        document.getElementById("a5").innerHTML = feedback_ID + " hours";
+        document.getElementById("a6").innerHTML = TOTAL_ID + " hours";
+        document.getElementById("a7").innerHTML = TAT_ID + " weeks";
+
+        document.getElementById("b1").innerHTML = visual_proposal + " hours";
+        document.getElementById("b2").innerHTML = UI_Support + " hours";
+        document.getElementById("b3").innerHTML = UI_feedback + " hours";
+        document.getElementById("b4").innerHTML = TOTAL_UI + " hours";
+
+        document.getElementById("c1").innerHTML = content_integration + " hours";
+        document.getElementById("c2").innerHTML = feedback_implementation_DEV + " hours";
+        document.getElementById("c3").innerHTML = audio_integration + " hours";
+        document.getElementById("c4").innerHTML = custom_player + " hours";
+        document.getElementById("c5").innerHTML = all_hours_DEV + " hours";
+        document.getElementById("c6").innerHTML = TAT_dev + " days";
+
+        window.onload = function () { window.print(); }
+
+    </script>
+
+</body>
+
+</html>
