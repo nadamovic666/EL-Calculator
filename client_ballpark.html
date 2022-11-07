@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ballpark</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script type="text/javascript" src="downloadFile_client.js"></script>
+    <style>
+        * {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        * {
+            margin: auto;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+            font-size: 1.5vh;
+        }
+
+        #l3,
+        #i3,
+        #m3 {
+            font-weight: bold;
+        }
+
+        .title {
+            text-align: center;
+            font-weight: bold;
+            font-size: 3vh;
+            padding: 2%;
+        }
+        .noBorder
+        {
+            border-right-style: hidden;
+        }
+
+        .download
+        {
+           margin-left: 46%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="title">TPT E-Learning client facing ballpark metrics</div>
+    <table id="tblEfforts_client" style="width:80%">
+        <tr>
+            <th id="client"></th>
+            <td id="dur">minutes</td>
+            <td id="lvl">level</td>
+            <td id="s_c">source content</td>
+            <td id="c_t">content type</td>
+        </tr>
+        <tr>
+            <th>Service</th>
+            <th>Unit</th>
+            <th>Qty.</th>
+            <th>Rate (USD)</th>
+            <th>COST (USD)</th>
+            
+        </tr>
+        
+        <tr>
+            <td>UI/UX design</td>
+            <td id="units1"></td>
+            <td id="d1"></td>
+            <td id="d2"></td>
+            <td id="d3"></td>
+        </tr>
+        <tr>
+            <td>Instructional Design</td>
+            <td id="units2"></td>
+            <td id="e1"></td>
+            <td id="e2"></td>
+            <td id="e3"></td>
+        </tr>
+        <tr>
+            <td>Development</td>
+            <td id="units3"></td>
+            <td id="f1"></td>
+            <td id="f2"></td>
+            <td id="f3"></td>
+        </tr>
+        <tr>
+            <td>Testing</td>
+            <td id="units4"></td>
+            <td id="g1"></td>
+            <td id="g2"></td>
+            <td id="g3"></td>
+        </tr>
+        <tr>
+            <td>Project Management</td>
+            <td>Percent</td>
+            <td id="h1"></td>
+            <td id="h2"></td>
+            <td id="h3"></td>
+        </tr>
+        <tr>
+            <td><b>SUBTOTAL</b></td>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+            <td id="i3"></td>
+        </tr>
+        
+        <tr>
+            <td>Voice-Over</td>
+            <td>Fee</td>
+            <td>1</td>
+            <td id="j2"></td>
+            <td id="j3"></td>
+        </tr>
+        <tr>
+            <td>Audio Integration</td>
+            <td id="units5"></td>
+            <td id="k1"></td>
+            <td id="k2"></td>
+            <td id="k3"></td>
+        </tr>
+        <tr>
+            <td><b>SUBTOTAL</b></td>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+            <td id="l3"></td>
+        </tr>
+       
+        <tr>
+            <td><b>TOTAL COST (USD)</b></td>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+            <td id="m3"></td>
+        </tr>
+    </table>
+    <br>
+    <button onclick="exportData()" class="download">
+        <span class="glyphicon glyphicon-download"></span>
+        Download csv</button>
+
+
+    <script type="text/javascript">
+
+        var client_name = localStorage.getItem("client");
+        var duration = localStorage.getItem("dur");
+        var level = localStorage.getItem("lvl");
+        var source_content = localStorage.getItem("s_c");
+        var content_type = localStorage.getItem("c_t");
+        var unit = localStorage.getItem("units");
+
+        var TOTAL_UI = localStorage.getItem("d1");
+        var UI_rate = localStorage.getItem("d2");
+        var UI_costs = localStorage.getItem("d3");
+
+        var TOTAL_ID = localStorage.getItem("e1");
+        var ID_rate = localStorage.getItem("e2");
+        var ID_costs = localStorage.getItem("e3");
+
+        var DEV_without_audio_int = localStorage.getItem("f1");
+        var DEV_rate = localStorage.getItem("f2");
+        var DEV_costs = localStorage.getItem("f3");
+        
+        var testing = localStorage.getItem("g1");
+        var testing_rate = localStorage.getItem("g2");
+        var testing_costs = localStorage.getItem("g3");
+
+        var PM_rate = localStorage.getItem("h1");
+        var UI_ID_DEV_TEST = localStorage.getItem("h2");
+        var PM_costs = localStorage.getItem("h3");
+
+        var SUBTOTAL1 = localStorage.getItem("i3");
+
+        var VO = localStorage.getItem("j23");
+
+        var audio_int_for_client = localStorage.getItem("k1");
+        var DEV_rate = localStorage.getItem("k2");
+        var audio_int_cost = localStorage.getItem("k3");
+
+        var SUBTOTAL2 = localStorage.getItem("l3");
+
+        var TOTAL_COST = localStorage.getItem("m3");
+        
+        
+
+        document.getElementById("client").innerHTML = client_name;
+        document.getElementById("dur").innerHTML = duration + " minutes course";
+        document.getElementById("lvl").innerHTML = "Level " + level;
+        document.getElementById("s_c").innerHTML = "Source content: " + source_content;
+        document.getElementById("c_t").innerHTML = "Content type: " + content_type;
+        document.getElementById("units1").innerHTML = unit;
+        document.getElementById("units2").innerHTML = unit;
+        document.getElementById("units3").innerHTML = unit;
+        document.getElementById("units4").innerHTML = unit;
+        document.getElementById("units5").innerHTML = unit;
+
+        document.getElementById("d1").innerHTML = Math.round(TOTAL_UI * 100) / 100;
+        document.getElementById("d2").innerHTML = Math.round(UI_rate * 100) / 100;;
+        document.getElementById("d3").innerHTML = Math.round(UI_costs * 100) / 100;
+
+        document.getElementById("e1").innerHTML = Math.round(TOTAL_ID * 100) / 100;
+        document.getElementById("e2").innerHTML = Math.round(ID_rate * 100) / 100;;
+        document.getElementById("e3").innerHTML = Math.round(ID_costs * 100) / 100;
+
+        document.getElementById("f1").innerHTML = Math.round(DEV_without_audio_int * 100) / 100;
+        document.getElementById("f2").innerHTML = Math.round(DEV_rate * 100) / 100;;
+        document.getElementById("f3").innerHTML = Math.round(DEV_costs * 100) / 100;
+
+        document.getElementById("g1").innerHTML = Math.round(testing * 100) / 100;;
+        document.getElementById("g2").innerHTML = Math.round(testing_rate * 100) / 100;
+        document.getElementById("g3").innerHTML = Math.round(testing_costs * 100) / 100;
+        
+        document.getElementById("h1").innerHTML = Math.round(PM_rate * 100) / 100;
+        document.getElementById("h2").innerHTML = Math.round(UI_ID_DEV_TEST * 100) / 100;
+        document.getElementById("h3").innerHTML = Math.round(PM_costs * 100) / 100;
+
+        document.getElementById("i3").innerHTML = Math.round(SUBTOTAL1 * 100) / 100;
+
+        document.getElementById("j2").innerHTML = Math.round(VO * 100) / 100;
+        document.getElementById("j3").innerHTML = Math.round(VO * 100) / 100;
+
+        document.getElementById("k1").innerHTML = Math.round(audio_int_for_client * 100) / 100;
+        document.getElementById("k2").innerHTML = Math.round(DEV_rate * 100) / 100;
+        document.getElementById("k3").innerHTML = Math.round(audio_int_cost * 100) / 100;
+
+        document.getElementById("l3").innerHTML = Math.round(SUBTOTAL2 * 100) / 100;
+
+        document.getElementById("m3").innerHTML = Math.round(TOTAL_COST * 100) / 100;
+
+        // window.onload = function () { window.print(); }\
+
+
+    </script>
+
+</body>
+
+</html>

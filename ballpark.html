@@ -3,6 +3,8 @@
 
 <head>
     <title>Ballpark</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script type="text/javascript" src="downloadFile.js"></script>
     <style>
         * {
             font-family: 'Open Sans', sans-serif;
@@ -35,16 +37,27 @@
             font-size: 3vh;
             padding: 2%;
         }
+        .noBorder
+        {
+            border-left-style: hidden;
+        }
+        .download
+        {
+           margin-left: 46%;
+        }
     </style>
 </head>
 
 <body>
-    <div class="title">TPT E-Learning ballpark metrics</div>
-    <table style="width:80%">
+    <div class="title">TPT E-Learning detail ballpark metrics</div>
+    <table id="tblEfforts" style="width:80%">
         <tr>
-            <th colspan="2">ID Efforts:</th>
-            <th colspan="2">UI Efforts:</th>
-            <th colspan="2">DEV Efforts:</th>
+            <th>ID Efforts:</th>
+            <th class="noBorder"></th>
+            <th>UI Efforts:</th>
+            <th class="noBorder"></th>
+            <th>DEV Efforts:</th>
+            <th class="noBorder"></th>
 
         </tr>
         <tr>
@@ -104,6 +117,10 @@
             <td></td>
         </tr>
     </table>
+    <br>
+    <button onclick="exportData()" class="download">
+        <span class="glyphicon glyphicon-download"></span>
+        Download csv</button>
 
 
     <script type="text/javascript">
@@ -148,7 +165,8 @@
         document.getElementById("c5").innerHTML = all_hours_DEV + " hours";
         document.getElementById("c6").innerHTML = TAT_dev + " days";
 
-        window.onload = function () { window.print(); }
+        // window.onload = function () { window.print(); }\
+
 
     </script>
 
